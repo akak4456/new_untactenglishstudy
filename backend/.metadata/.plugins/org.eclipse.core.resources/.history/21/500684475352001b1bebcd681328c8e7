@@ -65,13 +65,4 @@ public class AttendanceRepositoryTest {
 									.build();
 		attendanceRepo.saveAndFlush(attendance);
 	}
-	
-	@Test(expected=DataIntegrityViolationException.class)
-	public void memberNullSaveTest() {
-		Attendance attendance = Attendance.builder()
-									.status(AttendanceStatus.ABSENT)
-									.group(group)
-									.build();
-		attendanceRepo.saveAndFlush(attendance);
-	}
 }
