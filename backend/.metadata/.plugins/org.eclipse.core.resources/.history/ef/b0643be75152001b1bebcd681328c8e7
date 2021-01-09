@@ -1,0 +1,36 @@
+package com.untact.attendance.persistent;
+
+import javax.transaction.Transactional;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.untact.antonym.domain.Antonym;
+import com.untact.demo.UntactenglishstudyApplication;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = UntactenglishstudyApplication.class)
+@Transactional
+public class AttendanceRepositoryTest {
+	/*
+	 * spring.jpa.hibernate.ddl-auto=create-drop
+	 * 로 설정해서 테스트 할 것
+	 */
+	
+	@Autowired
+	private AttendanceRepository attendanceRepo;
+	
+	
+	@Before
+	public void setUp() {
+	}
+	@Test
+	public void successSaveTest() {
+		Antonym antonym = Antonym.builder().englishSpelling(englishSpelling).wordto("word").build();
+		antonymRepo.saveAndFlush(antonym);
+	}
+}

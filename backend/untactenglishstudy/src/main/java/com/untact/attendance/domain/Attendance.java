@@ -2,6 +2,7 @@ package com.untact.attendance.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -48,18 +49,16 @@ public class Attendance {
 	@CreationTimestamp
 	private LocalDateTime regdate;//출석 등록 시간
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name="gno")
+	@ManyToOne(fetch=FetchType.LAZY,cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name="gno",nullable=false)
 	@JsonIgnore
 	private GroupEntity group;//그룹과의 관계
 	public void setGroup (GroupEntity group) {
 		this.group = group;
 	}
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name="mno")
+	@ManyToOne(fetch=FetchType.LAZY,cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name="mno",nullable=false)
 	@JsonIgnore
 	private MemberEntity member;//멤버와의 관계
 	public void setMember(MemberEntity member) {

@@ -46,13 +46,13 @@ public class AntonymRepositoryTest {
 	}
 	
 	@Test(expected=DataIntegrityViolationException.class)
-	public void wordFromNullTest() {
+	public void wordFromNullSaveTest() {
 		Antonym antonym = Antonym.builder().wordto("word").build();
 		antonymRepo.saveAndFlush(antonym);
 	}
 	
 	@Test(expected=ConstraintViolationException.class)
-	public void wordToNullTest() {
+	public void wordToNullSaveTest() {
 		Antonym antonym = Antonym.builder().englishSpelling(englishSpelling).build();
 		antonymRepo.saveAndFlush(antonym);
 	}
