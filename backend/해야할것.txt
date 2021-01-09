@@ -1,0 +1,1 @@
+persistent에 대한 junit test 보강

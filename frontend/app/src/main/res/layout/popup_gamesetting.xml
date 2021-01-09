@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="게임을 시작하기 전에 상금부터 설정해주세요"
+        android:textSize="19dp"/>
+    <EditText
+        android:id="@+id/first_prize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="1등 상금(단위 원 숫자만 입력)"/>
+    <EditText
+        android:id="@+id/second_prize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="2등 상금(단위 원 숫자만 입력)"/>
+    <EditText
+        android:id="@+id/third_prize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="3등 상금(단위 원 숫자만 입력)"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn_game_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="게임시작"/>
+        <Button
+            android:id="@+id/btn_game_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="취소"/>
+    </LinearLayout>
+</LinearLayout>

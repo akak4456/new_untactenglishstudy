@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    tools:context=".study.MyStudyActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="?actionBarSize"
+                android:padding="@dimen/appbar_padding"
+                android:text="Study"
+                android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+                />
+
+            <Button
+                android:id="@+id/btn_leader"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/leader" />
+
+        </RelativeLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview_mystudy"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        >
+        <LinearLayout
+            android:descendantFocusability="blocksDescendants"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="111dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/groupname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/seoulnamsanbold"
+                    android:text="스터디"
+                    android:textAlignment="center"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/groupnumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/seoulnamsan"
+                    android:text="인원수"
+                    android:textAlignment="center"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:stretchColumns="0,1,2,3">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp">
+
+                    <Button
+                        android:id="@+id/btn_attendance"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+
+                        android:background="@drawable/attendance"
+                        android:gravity="bottom|center" />
+
+                    <Button
+                        android:id="@+id/btn_timetable"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/timetable"
+                        android:gravity="bottom|center" />
+
+                    <Button
+                        android:id="@+id/btn_invite"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/addmember"
+                        android:gravity="bottom|center" />
+
+                    <Button
+                        android:id="@+id/btn_info"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/info"
+
+                        android:gravity="bottom|center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_1"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="출석부" />
+
+                    <TextView
+                        android:id="@+id/tv_2"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="시간표" />
+
+                    <TextView
+                        android:id="@+id/tv_3"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="멤버초대" />
+
+                    <TextView
+                        android:id="@+id/tv_4"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="그룹정보" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="15dp">
+
+                    <Button
+                        android:id="@+id/btn_voca"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/voca"
+                        android:gravity="bottom|center" />
+
+                    <Button
+                        android:id="@+id/btn_quiz"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/engcontent"
+                        android:gravity="bottom|center" />
+
+                    <Button
+                        android:id="@+id/btn_engchat"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/engchat"
+                        android:gravity="bottom|center" />
+
+                    <Button
+                        android:id="@+id/btn_meet"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+
+                        android:background="@drawable/onlinemeeting"
+                        android:gravity="bottom|center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_5"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="단어장" />
+
+                    <TextView
+                        android:id="@+id/tv_6"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="퀴즈" />
+
+                    <TextView
+                        android:id="@+id/tv_7"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="영어채팅" />
+
+                    <TextView
+                        android:id="@+id/tv_8"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="화상회의" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    tools:layout_marginTop="15dp">
+
+                    <Button
+                        android:id="@+id/btn_chat"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+
+                        android:background="@drawable/chat"
+                        android:gravity="bottom|center" />
+
+                    <Button
+                        android:id="@+id/btn_board"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+
+                        android:background="@drawable/board"
+                        android:gravity="bottom|center" />
+
+                    <Button
+                        android:id="@+id/btn_rank"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+
+                        android:background="@drawable/rank"
+                        android:gravity="bottom|center" />
+
+                    <Button
+                        android:id="@+id/btn_notify_add"
+                        android:layout_width="65dp"
+                        android:layout_height="80dp"
+
+                        android:background="@drawable/notice_btn"
+                        android:gravity="bottom|center" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_9"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="채팅" />
+
+                    <TextView
+                        android:id="@+id/tv_10"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="게시판" />
+                    <TextView
+                        android:id="@+id/tv_11"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="랭킹전" />
+                    <TextView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/seoulnamsan"
+                        android:gravity="center"
+                        android:text="공지 등록" />
+                </TableRow>
+
+
+            </TableLayout>
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="#919191" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="50dp"
+                    android:layout_height="55dp"
+                    android:gravity="center"
+                    android:text="공지" />
+
+                <ListView
+                    android:id="@+id/lv_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="#919191" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/timetable_title"
+                    android:layout_width="50dp"
+                    android:layout_height="55dp"
+                    android:gravity="center"
+                    android:text="그룹 시간표" />
+                <com.example.study.timetableview.TimetableView
+                    android:id="@+id/timetable"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    app:header_title="@array/day_list"
+                    app:row_count="25"
+                    app:column_count="8"
+                    app:start_time="0"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

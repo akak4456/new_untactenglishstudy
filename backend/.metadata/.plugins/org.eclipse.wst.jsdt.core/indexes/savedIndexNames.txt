@@ -1,0 +1,7 @@
+INDEX VERSION 1.4+C:\Users\akak4\Desktop\new_untactenglishstudy\backend\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+3511389617.index
+3965378226.index
+1479274946.index
+3384511939.index
+770342215.index
+1725819971.index

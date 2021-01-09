@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#AEE5EC"
+    android:orientation="vertical"
+    tools:context=".main.IntroActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="152dp"
+        android:orientation="vertical"></LinearLayout>
+
+    <TextView
+        android:id="@+id/intro_ment2"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:fontFamily="@font/acme"
+        android:gravity="center"
+        android:text="Untact English Study"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="168dp"
+        android:src="@drawable/intro" />
+
+    <TextView
+        android:id="@+id/intro_ment"
+        android:layout_width="match_parent"
+        android:layout_height="99dp"
+        android:fontFamily="@font/tvn"
+        android:gravity="center"
+        android:text="따로 또 같이 영어 공부하자!"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

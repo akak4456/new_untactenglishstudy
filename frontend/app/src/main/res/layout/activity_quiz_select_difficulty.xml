@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".engcontent.activity.QuizSelectVocaActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="단어 난이도를 선택하세요."
+        android:textSize="24sp">
+    </TextView>
+    <Button
+        android:id="@+id/btn_soeasy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="가장쉬움"/>
+    <Button
+        android:id="@+id/btn_easy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="쉬움"/>
+    <Button
+        android:id="@+id/btn_normal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="보통"/>
+    <Button
+        android:id="@+id/btn_hard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="어려움"/>
+    <Button
+        android:id="@+id/btn_sohard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="가장어려움"/>
+</LinearLayout>
