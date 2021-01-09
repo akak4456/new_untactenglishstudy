@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.untact.attendance.vo.AttendanceResponse;
 import com.untact.exception.NotGroupLeaderException;
 import com.untact.member.domain.MemberEntity;
 import com.untact.security.AuthenticationFacade;
 import com.untact.service.leader.LeaderService;
-import com.untact.vo.AttendanceResponse;
 import com.untact.vo.MemberManageResponse;
 import com.untact.vo.WaitingResponse;
 

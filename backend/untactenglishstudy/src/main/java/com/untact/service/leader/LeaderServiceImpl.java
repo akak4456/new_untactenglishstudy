@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.untact.attendance.domain.AttendanceStatus;
 import com.untact.attendance.persistent.AttendanceRepository;
+import com.untact.attendance.vo.AttendanceVO;
 import com.untact.exception.NotGroupLeaderException;
 import com.untact.group.domain.GroupEntity;
 import com.untact.group.persistent.GroupEntityRepository;
@@ -19,7 +21,6 @@ import com.untact.groupinclude.domain.GroupInclude;
 import com.untact.groupinclude.domain.WhichStatus;
 import com.untact.groupinclude.persistent.GroupIncludeRepository;
 import com.untact.member.domain.MemberEntity;
-import com.untact.vo.AttendanceVO;
 import com.untact.vo.MemberManageVO;
 
 import lombok.extern.java.Log;
@@ -90,7 +91,8 @@ public class LeaderServiceImpl implements LeaderService {
 	@Override
 	public List<AttendanceVO> getAttendanceListWithGroupNumberAndLocalDate(Long gno, LocalDate time) {
 		// TODO Auto-generated method stub
-		return attendanceRepo.getAttendanceResponseWithGroupNumberAndLocalDate(gno, time);
+		List<AttendanceVO> ret = attendanceRepo.findByGroupNumberAndLocalDate(gno, time).stream().map(a->new AttendanceVO(a.getMember().getMno(),a.getMember().getName(),a.getStatus().toString(),a.getAno())).collect(Collectors.toList());
+		return ret;
 	}
 	@Override
 	public boolean changeAttendance(Long gno, MemberEntity leader, Long targetMno,Long ano, String oldStatus, String newStatus) {

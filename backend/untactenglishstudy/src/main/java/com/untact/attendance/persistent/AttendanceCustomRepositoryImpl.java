@@ -14,7 +14,6 @@ import com.querydsl.core.Tuple;
 import com.querydsl.jpa.JPQLQuery;
 import com.untact.attendance.domain.Attendance;
 import com.untact.attendance.domain.QAttendance;
-import com.untact.vo.AttendanceVO;
 
 public class AttendanceCustomRepositoryImpl extends QuerydslRepositorySupport implements AttendanceCustomRepository {
 	public AttendanceCustomRepositoryImpl() {
@@ -22,13 +21,13 @@ public class AttendanceCustomRepositoryImpl extends QuerydslRepositorySupport im
 	}
 
 	@Override
-	public Attendance findAttendanceNumberByGroupNumberAndMemberNumberAndBetweenStartTimeAndCurrentTime(Long gno,Long mno,LocalDateTime startTime) {
+	public Attendance findByGroupNumberAndMemberNumberAndBetweenLocalDateTimes(Long gno,Long mno,LocalDateTime startTime,LocalDateTime endTime) {
 		QAttendance attendance = QAttendance.attendance;
 		JPQLQuery<Attendance> query = from(attendance);
 		query.where(
 				attendance.group.gno.eq(gno)
 				.and(attendance.member.mno.eq(mno))
-				.and(attendance.regdate.between(startTime,LocalDateTime.now()))
+				.and(attendance.regdate.between(startTime,endTime))
 				);
 		return query.fetchOne();
 	}
@@ -44,20 +43,23 @@ public class AttendanceCustomRepositoryImpl extends QuerydslRepositorySupport im
 	}
 
 	@Override
-	public List<AttendanceVO> getAttendanceResponseWithGroupNumberAndLocalDate(Long gno, LocalDate time) {
+	public List<Attendance> findByGroupNumberAndLocalDate(Long gno, LocalDate time) {
 		QAttendance attendance = QAttendance.attendance;
 		JPQLQuery<Tuple> query = from(attendance).select(
-										attendance.member.mno,
-										attendance.member.name,
+										attendance.member,
 										attendance.ano,
 										attendance.status
 									);
 		query.where(attendance.group.gno.eq(gno)
 					.and(attendance.regdate.between(time.atStartOfDay(), time.plusDays(1L).atStartOfDay())));
 		List<Tuple> tuple = query.fetch();
-		List<AttendanceVO> response = new ArrayList<>();
+		List<Attendance> response = new ArrayList<>();
 		for(Tuple t:tuple) {
-			response.add(new AttendanceVO(t.get(attendance.member.mno),t.get(attendance.member.name),t.get(attendance.status).toString(),t.get(attendance.ano)));
+			response.add(Attendance.builder()
+									.member(t.get(attendance.member))
+									.ano(t.get(attendance.ano))
+									.status(t.get(attendance.status))
+									.build());
 		}
 		return response;
 	}

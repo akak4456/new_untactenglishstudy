@@ -8,12 +8,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.untact.attendance.domain.Attendance;
-import com.untact.vo.AttendanceVO;
+import com.untact.attendance.vo.AttendanceVO;
 
 public interface AttendanceCustomRepository {
-	public Attendance findAttendanceNumberByGroupNumberAndMemberNumberAndBetweenStartTimeAndCurrentTime(Long gno,Long mno,LocalDateTime startTime);
+	public Attendance findByGroupNumberAndMemberNumberAndBetweenLocalDateTimes(Long gno,Long mno,LocalDateTime startTime,LocalDateTime endTime);
 	
 	public Page<Attendance> getPageWithGroupNumberAndMemberNumber(Pageable pageable,Long gno,Long mno);
 	
-	public List<AttendanceVO> getAttendanceResponseWithGroupNumberAndLocalDate(Long gno,LocalDate time);
+	public List<Attendance> findByGroupNumberAndLocalDate(Long gno,LocalDate time);
 }

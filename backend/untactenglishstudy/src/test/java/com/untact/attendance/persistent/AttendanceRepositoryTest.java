@@ -1,5 +1,9 @@
 package com.untact.attendance.persistent;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
 import javax.transaction.Transactional;
 import javax.validation.ConstraintViolationException;
 
@@ -9,11 +13,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.untact.antonym.domain.Antonym;
 import com.untact.attendance.domain.Attendance;
 import com.untact.attendance.domain.AttendanceStatus;
+import com.untact.attendance.vo.AttendanceVO;
 import com.untact.demo.UntactenglishstudyApplication;
 import com.untact.group.domain.GroupEntity;
 import com.untact.member.domain.MemberEntity;
@@ -74,4 +82,25 @@ public class AttendanceRepositoryTest {
 									.build();
 		attendanceRepo.saveAndFlush(attendance);
 	}
+	
+	@Test
+	public void findByGroupNumberAndMemberNumberAndBetweenLocalDateTimesTest() {
+		
+	}
+	
+	@Test
+	public void getPageWithGroupNumberAndMemberNumberTest() {
+		
+	}
+	
+	@Test
+	public void findByGroupNumberAndLocalDateTest() {
+		
+	}
+	
+	@Test
+	public void updateStatusByAttendanceNumberTest() {
+		
+	}
+	
 }

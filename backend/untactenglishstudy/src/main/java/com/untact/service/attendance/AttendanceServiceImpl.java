@@ -66,7 +66,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		GroupEntity group = groupRepo.findById(gno).get();
 		//시간표 아이템 하나의 시간 길이는 최소 1시간이 되어야 함
 		LocalDateTime beforeLateTime = LocalDateTime.now().minusMinutes(beforeLateTimeAmount);
-		Attendance beforeLateAttendance = attendanceRepo.findAttendanceNumberByGroupNumberAndMemberNumberAndBetweenStartTimeAndCurrentTime(gno, mno, beforeLateTime);
+		Attendance beforeLateAttendance = attendanceRepo.findByGroupNumberAndMemberNumberAndBetweenLocalDateTimes(gno, mno, beforeLateTime,LocalDateTime.now());
 		if(beforeLateAttendance != null) {
 			//지각 시간
 			if(beforeLateAttendance.getStatus() == AttendanceStatus.ABSENT) {
@@ -79,7 +79,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 			}
 		}
 		LocalDateTime beforeAbsentTime = LocalDateTime.now().minusMinutes(beforeAbsentTimeAmount);
-		Attendance beforeAbsentAttendance = attendanceRepo.findAttendanceNumberByGroupNumberAndMemberNumberAndBetweenStartTimeAndCurrentTime(gno, mno, beforeAbsentTime);
+		Attendance beforeAbsentAttendance = attendanceRepo.findByGroupNumberAndMemberNumberAndBetweenLocalDateTimes(gno, mno, beforeAbsentTime,LocalDateTime.now());
 		
 		if(beforeAbsentAttendance != null) {
 			if(beforeAbsentAttendance.getStatus() == AttendanceStatus.ABSENT) {
@@ -96,7 +96,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public Long getRemainTime(Long gno, Long mno) {
 		LocalDateTime beforeAbsentTime = LocalDateTime.now().minusMinutes(beforeAbsentTimeAmount);
-		Attendance beforeAbsentAttendance = attendanceRepo.findAttendanceNumberByGroupNumberAndMemberNumberAndBetweenStartTimeAndCurrentTime(gno, mno, beforeAbsentTime);
+		Attendance beforeAbsentAttendance = attendanceRepo.findByGroupNumberAndMemberNumberAndBetweenLocalDateTimes(gno, mno, beforeAbsentTime,LocalDateTime.now());
 		if(beforeAbsentAttendance == null) {
 			return 0L;
 		}else {

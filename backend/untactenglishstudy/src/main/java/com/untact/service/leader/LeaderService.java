@@ -3,10 +3,10 @@ package com.untact.service.leader;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.untact.attendance.vo.AttendanceVO;
 import com.untact.exception.NotGroupLeaderException;
 import com.untact.groupinclude.domain.GroupInclude;
 import com.untact.member.domain.MemberEntity;
-import com.untact.vo.AttendanceVO;
 import com.untact.vo.MemberManageVO;
 
 public interface LeaderService {
