@@ -57,7 +57,7 @@ public class AttendanceRepositoryTest {
 		attendanceRepo.saveAndFlush(attendance);
 	}
 	
-	@Test(expected=DataIntegrityViolationException.class)
+	@Test(expected=ConstraintViolationException.class)
 	public void groupNullSaveTest() {
 		Attendance attendance = Attendance.builder()
 									.status(AttendanceStatus.ABSENT)

@@ -3,7 +3,6 @@ package com.untact.attendance.domain;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,7 +43,6 @@ public class Attendance {
 	
 	@Enumerated(EnumType.STRING)
 	@NotNull
-	@Column(nullable=false)
 	private AttendanceStatus status;//출석 상태(출석, 지각, 결석)
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

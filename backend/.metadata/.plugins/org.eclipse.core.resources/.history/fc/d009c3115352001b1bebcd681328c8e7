@@ -1,7 +1,6 @@
 package com.untact.attendance.persistent;
 
 import javax.transaction.Transactional;
-import javax.validation.ConstraintViolationException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -54,15 +53,6 @@ public class AttendanceRepositoryTest {
 				.group(group)
 				.member(member)
 				.build();
-		attendanceRepo.saveAndFlush(attendance);
-	}
-	
-	@Test(expected=DataIntegrityViolationException.class)
-	public void groupNullSaveTest() {
-		Attendance attendance = Attendance.builder()
-									.status(AttendanceStatus.ABSENT)
-									.member(member)
-									.build();
 		attendanceRepo.saveAndFlush(attendance);
 	}
 }
