@@ -11,7 +11,7 @@ import com.untact.attendance.domain.Attendance;
 import com.untact.attendance.domain.AttendanceStatus;
 
 public interface AttendanceRepository extends JpaRepository<Attendance, Long>, AttendanceCustomRepository {
-	@Modifying(clearAutomatically = true)
+	@Modifying
 	@Transactional
 	@Query("UPDATE Attendance a SET a.status = :status WHERE a.ano=:ano")
 	public int updateStatusByAttendanceNumber(@Param("status")AttendanceStatus status,@Param("ano")Long ano);

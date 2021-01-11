@@ -225,6 +225,7 @@ public class AttendanceRepositoryTest {
 		
 		attendanceRepo.updateStatusByAttendanceNumber(AttendanceStatus.LATE, attendance.getAno());
 		
+		attendanceRepo.flush();
 		Attendance afterUpdateAttendance = attendanceRepo.findById(attendance.getAno()).get();
 		assertEquals(afterUpdateAttendance.getStatus(),AttendanceStatus.LATE);
 	}

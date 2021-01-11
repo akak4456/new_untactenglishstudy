@@ -216,6 +216,8 @@ public class AttendanceRepositoryTest {
 	}
 
 	@Test
+	@Transactional
+	@Commit
 	public void updateStatusByAttendanceNumberTest() {
 		Attendance attendance = Attendance.builder().status(AttendanceStatus.ABSENT).group(group.get(0)).member(member.get(0)).build();
 		attendanceRepo.save(attendance);
