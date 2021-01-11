@@ -15,12 +15,14 @@ public class PageTester<T> {
 			List<T> testGroup,
 			int pageNum,
 			int expectedTotalElementsCount,
+			int expectedPageSize,
 			PageDirection direction) {
 		List<T> result = page.getContent();
 		assertEquals(page.getTotalElements(),expectedTotalElementsCount);
+		assertEquals(result.size(),expectedPageSize);
 		assertEquals(page.getNumber(),pageNum-1);
 		for(T t:testGroup) {
-			if(result.get(0).equals(t)) {
+			if(result.get(0).equals(testGroup.get(0))) {
 				return;
 			}
 		}

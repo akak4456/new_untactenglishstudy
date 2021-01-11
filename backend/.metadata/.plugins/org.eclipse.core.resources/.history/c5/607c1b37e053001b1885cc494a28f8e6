@@ -17,7 +17,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.untact.attendance.domain.Attendance;
@@ -51,9 +50,9 @@ public class AttendanceRepositoryTest {
 	public void setUp() {
 		group = new ArrayList<>();
 		member = new ArrayList<>();
-		for (int i = 0; i < 5; i++) {
-			group.add(GroupEntity.builder().title("title" + i).build());
-			member.add(MemberEntity.builder().email("email" + i + "@email.com").build());
+		for(int i=0;i<5;i++) {
+			group.add(GroupEntity.builder().title("title"+i).build());
+			member.add(MemberEntity.builder().email("email"+i+"@email.com").build());
 		}
 	}
 
@@ -85,7 +84,7 @@ public class AttendanceRepositoryTest {
 	@Test
 	public void findByGroupNumberAndMemberNumberAndBetweenLocalDateTimesTest() {
 		for (int i = 0; i < group.size(); i++) {
-			for (int j = 0; j < member.size(); j++) {
+			for (int j = 0; j <member.size(); j++) {
 				attendanceRepo.save(Attendance.builder().status(AttendanceStatus.ABSENT).group(group.get(i))
 						.member(member.get(j)).build());
 			}
@@ -116,7 +115,7 @@ public class AttendanceRepositoryTest {
 					987654321L, LocalDateTime.now().minus(rand.nextInt(15) + 1, ChronoUnit.MINUTES),
 					LocalDateTime.now().plus(rand.nextInt(15) + 1, ChronoUnit.MINUTES)));
 		}
-
+		
 		for (int i = 0; i < group.size(); i++) {
 			for (int j = 0; j < member.size(); j++) {
 				// start Time 이 end Time 보다 크다면
@@ -127,20 +126,20 @@ public class AttendanceRepositoryTest {
 						LocalDateTime.now().minus(rand.nextInt(15) + 1, ChronoUnit.MINUTES)));
 			}
 		}
-
+		
 		for (int i = 0; i < group.size(); i++) {
 			for (int j = 0; j < member.size(); j++) {
 				// 시간대가 겹치지 않는다면?
 				Random rand = new Random();
-				int randInt = rand.nextInt(15) + 1;
-				assertNull(
-						attendanceRepo.findByGroupNumberAndMemberNumberAndBetweenLocalDateTimes(group.get(i).getGno(),
-								member.get(j).getMno(), LocalDateTime.now().minus(randInt + 5, ChronoUnit.MINUTES),
-								LocalDateTime.now().minus(randInt, ChronoUnit.MINUTES)));
-				assertNull(
-						attendanceRepo.findByGroupNumberAndMemberNumberAndBetweenLocalDateTimes(group.get(i).getGno(),
-								member.get(j).getMno(), LocalDateTime.now().plus(randInt, ChronoUnit.MINUTES),
-								LocalDateTime.now().plus(randInt + 5, ChronoUnit.MINUTES)));
+				int randInt = rand.nextInt(15)+1;
+				assertNull(attendanceRepo.findByGroupNumberAndMemberNumberAndBetweenLocalDateTimes(
+						group.get(i).getGno(), member.get(j).getMno(),
+						LocalDateTime.now().minus(randInt+5, ChronoUnit.MINUTES),
+						LocalDateTime.now().minus(randInt, ChronoUnit.MINUTES)));
+				assertNull(attendanceRepo.findByGroupNumberAndMemberNumberAndBetweenLocalDateTimes(
+						group.get(i).getGno(), member.get(j).getMno(),
+						LocalDateTime.now().plus(randInt, ChronoUnit.MINUTES),
+						LocalDateTime.now().plus(randInt+5, ChronoUnit.MINUTES)));
 			}
 		}
 	}
@@ -148,34 +147,23 @@ public class AttendanceRepositoryTest {
 	@Test
 	public void getPageWithGroupNumberAndMemberNumberTest() {
 		List<Attendance> testGroup = new ArrayList<>();
-		List<Integer> testGroupSize = new ArrayList<>();
 		for (int i = 0; i < group.size(); i++) {
-			for (int j = 0; j < member.size(); j++) {
-				Random random = new Random();
-				int newSz = 10 + random.nextInt(20);
-				testGroupSize.add(newSz);
-				for (int k = 0; k < newSz; k++) {
-					testGroup.add(Attendance.builder().status(AttendanceStatus.ABSENT).group(group.get(i))
-							.member(member.get(j)).build());
-				}
+			for (int j = 0; j <member.size(); j++) {
+				testGroup.add(Attendance.builder().status(AttendanceStatus.ABSENT).group(group.get(i))
+						.member(member.get(j)).build());
 			}
 		}
 		attendanceRepo.saveAll(testGroup);
-
+		
 		PageVO pageVO = new PageVO();
-		// test Group 생성
+		//test Group 생성
 		PageTester<Attendance> tester = new PageTester<>();
-
-		for (int i = 0; i < group.size(); i++) {
-			for (int j = 0; j < member.size(); j++) {
-				pageVO.setPage(1);
-				Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
-						pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
-				tester.pageTest(page, testGroup, 1, testGroupSize.get(i*member.size()+j), PageDirection.DESC);
-			}
-
-		}
-
+		
+		pageVO.setPage(1);
+		tester.pageTest(
+				attendanceRepo.getPageWithGroupNumberAndMemberNumber(pageVO.makePageable(PageDirection.DESC, "ano"), group.get(0).getGno(), member.get(0).getMno()), 
+				group, 
+				1, 0, 0, 0, PageDirection.DESC);
 	}
 
 	@Test

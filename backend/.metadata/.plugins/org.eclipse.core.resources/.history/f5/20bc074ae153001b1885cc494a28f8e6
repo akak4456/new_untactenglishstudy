@@ -171,7 +171,7 @@ public class AttendanceRepositoryTest {
 				pageVO.setPage(1);
 				Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
 						pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
-				tester.pageTest(page, testGroup, 1, testGroupSize.get(i*member.size()+j), PageDirection.DESC);
+				tester.pageTest(page, testGroup, 1, 0, 0, 0, PageDirection.DESC);
 			}
 
 		}

@@ -152,7 +152,7 @@ public class AttendanceRepositoryTest {
 		for (int i = 0; i < group.size(); i++) {
 			for (int j = 0; j < member.size(); j++) {
 				Random random = new Random();
-				int newSz = 10 + random.nextInt(20);
+				int newSz = 10+random.nextInt(20);
 				testGroupSize.add(newSz);
 				for (int k = 0; k < newSz; k++) {
 					testGroup.add(Attendance.builder().status(AttendanceStatus.ABSENT).group(group.get(i))
@@ -166,16 +166,19 @@ public class AttendanceRepositoryTest {
 		// test Group 생성
 		PageTester<Attendance> tester = new PageTester<>();
 
-		for (int i = 0; i < group.size(); i++) {
-			for (int j = 0; j < member.size(); j++) {
+		
+		for(int i = 0;i<group.size();i++) {
+			for(int j=0;j<member.size();j++) {
 				pageVO.setPage(1);
-				Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
-						pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
-				tester.pageTest(page, testGroup, 1, testGroupSize.get(i*member.size()+j), PageDirection.DESC);
+				Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(pageVO.makePageable(PageDirection.DESC, "ano"),
+						group.get(i).getGno(), member.get(j).getMno());
+				tester.pageTest(
+						page,
+						testGroup, 1, 0, 0, 0, PageDirection.DESC);
 			}
-
+			
 		}
-
+		
 	}
 
 	@Test
