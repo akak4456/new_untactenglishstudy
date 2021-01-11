@@ -20,8 +20,6 @@ public class PageTester<T> {
 		if(page.getNumber() != pageNum -1) {
 			return false;
 		}
-		if(result.size() == 0)
-			return false;
 		for(int cur=0;cur<testGroup.size();cur++) {
 			if(result.get(0).equals(testGroup.get(cur))) {
 				if(direction == PageDirection.DESC) {
@@ -35,6 +33,8 @@ public class PageTester<T> {
 	}
 	
 	private boolean DESCTest(List<T> result,List<T> testGroup,int start) {
+		if(result.size() == 0)
+			return false;
 		if(start-result.size() < -1)
 			return false;
 		int resultIdx = 0;

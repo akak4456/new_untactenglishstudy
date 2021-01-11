@@ -35,6 +35,8 @@ public class PageTester<T> {
 	}
 	
 	private boolean DESCTest(List<T> result,List<T> testGroup,int start) {
+		if(result.size() == 0)
+			return false;
 		if(start-result.size() < -1)
 			return false;
 		int resultIdx = 0;

@@ -1,6 +1,5 @@
 package com.untact.attendance.persistent;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -203,15 +202,9 @@ public class AttendanceRepositoryTest {
 		attendanceRepo.saveAll(testGroup);
 		// test Group 생성
 		for(int i=0;i<group.size();i++) {
-			assertEquals(attendanceRepo.findByGroupNumberAndLocalDate(group.get(i).getGno(), LocalDate.now()).size(),member.size());
-		}
-		for(int i=0;i<group.size();i++) {
-			assertEquals(attendanceRepo.findByGroupNumberAndLocalDate(group.get(i).getGno(), LocalDate.now().minus(5,ChronoUnit.DAYS)).size(),0);
+			assertEquals(attendanceRepo.findByGroupNumberAndLocalDate(group.get(i).getGno(), LocalDate.now()),member.size());
 		}
 		
-		for(int i=0;i<group.size();i++) {
-			assertEquals(attendanceRepo.findByGroupNumberAndLocalDate(group.get(i).getGno(), LocalDate.now().plus(5,ChronoUnit.DAYS)).size(),0);
-		}
 	}
 
 	@Test

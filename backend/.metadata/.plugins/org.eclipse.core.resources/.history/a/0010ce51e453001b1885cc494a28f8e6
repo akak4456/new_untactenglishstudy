@@ -1,12 +1,9 @@
 package com.untact.attendance.persistent;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -165,26 +162,21 @@ public class AttendanceRepositoryTest {
 			}
 		}
 		attendanceRepo.saveAll(testGroup);
-		// test Group 생성
 
 		PageVO pageVO = new PageVO();
+		// test Group 생성
 		PageTester<Attendance> tester = new PageTester<>();
 
 		for (int i = 0; i < group.size(); i++) {
 			for (int j = 0; j < member.size(); j++) {
-				int sz = testGroupSize.get(i * member.size() + j);
-				for (int pageNum = 1; pageNum <= sz / pageVO.getSize(); pageNum++) {
+				int sz = testGroupSize.get(i*member.size()+j);
+				for(int pageNum = 1;pageNum <= sz/pageVO.getSize();pageNum++ ) {
 					pageVO.setPage(pageNum);
 					Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
-							pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(),
-							member.get(j).getMno());
+							pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
 					assertTrue(tester.pageTest(page, testGroup, pageNum, sz, PageDirection.DESC));
 				}
-				int notExistPage = sz / pageVO.getSize() + 5;
-				pageVO.setPage(notExistPage);
-				Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
-						pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
-				assertFalse(tester.pageTest(page, testGroup, notExistPage, sz, PageDirection.DESC));
+				
 			}
 
 		}
@@ -193,25 +185,7 @@ public class AttendanceRepositoryTest {
 
 	@Test
 	public void findByGroupNumberAndLocalDateTest() {
-		List<Attendance> testGroup = new ArrayList<>();
-		for (int i = 0; i < group.size(); i++) {
-			for (int j = 0; j < member.size(); j++) {
-				testGroup.add(Attendance.builder().status(AttendanceStatus.ABSENT).group(group.get(i))
-						.member(member.get(j)).build());
-			}
-		}
-		attendanceRepo.saveAll(testGroup);
-		// test Group 생성
-		for(int i=0;i<group.size();i++) {
-			assertEquals(attendanceRepo.findByGroupNumberAndLocalDate(group.get(i).getGno(), LocalDate.now()).size(),member.size());
-		}
-		for(int i=0;i<group.size();i++) {
-			assertEquals(attendanceRepo.findByGroupNumberAndLocalDate(group.get(i).getGno(), LocalDate.now().minus(5,ChronoUnit.DAYS)).size(),0);
-		}
-		
-		for(int i=0;i<group.size();i++) {
-			assertEquals(attendanceRepo.findByGroupNumberAndLocalDate(group.get(i).getGno(), LocalDate.now().plus(5,ChronoUnit.DAYS)).size(),0);
-		}
+
 	}
 
 	@Test
