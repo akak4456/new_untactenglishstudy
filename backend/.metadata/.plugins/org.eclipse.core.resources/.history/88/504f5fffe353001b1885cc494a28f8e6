@@ -1,10 +1,15 @@
 package com.untact.persistent.util;
 
+import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
 
 import org.springframework.data.domain.Page;
 
 import com.untact.vo.PageDirection;
+
+import jdk.internal.org.jline.utils.Log;
 
 public class PageTester<T> {
 	public boolean pageTest(
@@ -23,9 +28,17 @@ public class PageTester<T> {
 		for(int cur=0;cur<testGroup.size();cur++) {
 			if(result.get(0).equals(testGroup.get(cur))) {
 				if(direction == PageDirection.DESC) {
-					return DESCTest(result,testGroup,cur);
+					if(!DESCTest(result,testGroup,cur)) {
+						return false;
+					}else {
+						return true;
+					}
 				}else if(direction == PageDirection.ASC) {
-					return ASCTest();
+					if(!ASCTest()) {
+						return false;
+					}else {
+						return true;
+					}
 				}
 			}
 		}

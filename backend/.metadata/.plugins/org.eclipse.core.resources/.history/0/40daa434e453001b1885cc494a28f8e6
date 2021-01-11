@@ -6,6 +6,9 @@ import org.springframework.data.domain.Page;
 
 import com.untact.vo.PageDirection;
 
+import lombok.extern.java.Log;
+
+@Log
 public class PageTester<T> {
 	public boolean pageTest(
 			Page<T> page,

@@ -6,6 +6,9 @@ import org.springframework.data.domain.Page;
 
 import com.untact.vo.PageDirection;
 
+import lombok.extern.java.Log;
+
+@Log
 public class PageTester<T> {
 	public boolean pageTest(
 			Page<T> page,
@@ -22,6 +25,7 @@ public class PageTester<T> {
 		}
 		for(int cur=0;cur<testGroup.size();cur++) {
 			if(result.get(0).equals(testGroup.get(cur))) {
+				log.info("CUR:"+cur);
 				if(direction == PageDirection.DESC) {
 					return DESCTest(result,testGroup,cur);
 				}else if(direction == PageDirection.ASC) {
