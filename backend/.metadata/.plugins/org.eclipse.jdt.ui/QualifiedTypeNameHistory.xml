@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.persistence.CascadeType"/>
+    <fullyQualifiedTypeName name="com.untact.attendance.domain.Attendance"/>
+    <fullyQualifiedTypeName name="com.untact.attendance.domain.AttendanceStatus"/>
+    <fullyQualifiedTypeName name="com.untact.group.domain.GroupEntity"/>
+    <fullyQualifiedTypeName name="com.untact.member.domain.MemberEntity"/>
+    <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+</qualifiedTypeNameHistroy>

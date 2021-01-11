@@ -31,6 +31,14 @@ public class PageVO {
 				DEFAULT_PAGE_SIZE:size; 
 	}
 	
+	public Pageable makePageable(PageDirection direction,String...props) {
+		if(direction == PageDirection.DESC) {
+			return makePageable(0,props);
+		}else {
+			return makePageable(1,props);
+		}
+	}
+	
 	public Pageable makePageable(int direction, String... props) {
 		Sort.Direction dir = direction == 0?Sort.Direction.DESC:Sort.Direction.ASC;
 		return PageRequest.of(this.page-1,this.size, dir,props);

@@ -1,0 +1,30 @@
+package com.untact.persistent.util;
+
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+
+public class PageTester<T> {
+	public void pageTest(
+			Page<T> page,
+			List<T> testGroup,
+			int pageNum,
+			int expectedTotalElementsCount,
+			int expectedTotalPages,
+			int expectedPageSize,
+			Range range) {
+		List<T> result = page.getContent();
+		assertEquals(page.getTotalElements(),expectedTotalElementsCount);
+		assertEquals(page.getTotalPages(),expectedTotalPages);
+		assertEquals(result.size(),expectedPageSize);
+		assertEquals(page.getNumber(),pageNum-1);
+		int resultIdx = 0;
+		for(int i=range.getEnd()-1;i>=range.getStart();i--) {
+			assertTrue(result.get(resultIdx).equals(testGroup.get(i)));
+			resultIdx++;
+		}
+	}
+}
