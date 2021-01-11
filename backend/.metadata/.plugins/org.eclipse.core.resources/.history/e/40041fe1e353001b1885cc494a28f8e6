@@ -30,19 +30,15 @@ public class PageTester<T> {
 				if(direction == PageDirection.DESC) {
 					if(!DESCTest(result,testGroup,cur)) {
 						return false;
-					}else {
-						return true;
 					}
 				}else if(direction == PageDirection.ASC) {
 					if(!ASCTest()) {
 						return false;
-					}else {
-						return true;
 					}
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	private boolean DESCTest(List<T> result,List<T> testGroup,int start) {

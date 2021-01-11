@@ -2,7 +2,6 @@ package com.untact.attendance.persistent;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

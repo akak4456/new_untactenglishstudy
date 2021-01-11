@@ -2,7 +2,6 @@ package com.untact.attendance.persistent;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -174,7 +173,7 @@ public class AttendanceRepositoryTest {
 					pageVO.setPage(pageNum);
 					Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
 							pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
-					assertTrue(tester.pageTest(page, testGroup, pageNum, sz, PageDirection.DESC));
+					tester.pageTest(page, testGroup, pageNum, sz, PageDirection.DESC);
 				}
 				
 			}

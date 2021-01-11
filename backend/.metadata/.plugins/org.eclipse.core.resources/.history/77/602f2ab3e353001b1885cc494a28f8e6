@@ -19,30 +19,22 @@ public class PageTester<T> {
 			int expectedTotalElementsCount,
 			PageDirection direction) {
 		List<T> result = page.getContent();
-		if(page.getTotalElements() != expectedTotalElementsCount) {
-			return false;
-		}
-		if(page.getNumber() != pageNum -1) {
-			return false;
-		}
+		assertEquals(page.getTotalElements(),expectedTotalElementsCount);
+		assertEquals(page.getNumber(),pageNum-1);
 		for(int cur=0;cur<testGroup.size();cur++) {
 			if(result.get(0).equals(testGroup.get(cur))) {
 				if(direction == PageDirection.DESC) {
 					if(!DESCTest(result,testGroup,cur)) {
 						return false;
-					}else {
-						return true;
 					}
 				}else if(direction == PageDirection.ASC) {
 					if(!ASCTest()) {
 						return false;
-					}else {
-						return true;
 					}
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	private boolean DESCTest(List<T> result,List<T> testGroup,int start) {
