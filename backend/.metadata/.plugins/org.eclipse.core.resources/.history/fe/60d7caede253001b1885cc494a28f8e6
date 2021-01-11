@@ -46,7 +46,7 @@ public class PageTester<T> {
 			return false;
 		int resultIdx = 0;
 		for(int i=start;i>start-result.size();i--) {
-			if(!result.get(resultIdx).equals(testGroup.get(i))) {
+			if(!result.get(resultIdx).equals(testGroup.get(i+1))) {
 				return false;
 			}
 			resultIdx++;

@@ -9,8 +9,6 @@ import org.springframework.data.domain.Page;
 
 import com.untact.vo.PageDirection;
 
-import jdk.internal.org.jline.utils.Log;
-
 public class PageTester<T> {
 	public void pageTest(
 			Page<T> page,
@@ -51,7 +49,7 @@ public class PageTester<T> {
 			}
 			resultIdx++;
 		}
-		return true;
+		return false;
 	}
 	
 	private boolean ASCTest() {

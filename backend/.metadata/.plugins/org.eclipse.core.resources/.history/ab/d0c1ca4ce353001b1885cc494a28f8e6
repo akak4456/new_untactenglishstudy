@@ -168,14 +168,10 @@ public class AttendanceRepositoryTest {
 
 		for (int i = 0; i < group.size(); i++) {
 			for (int j = 0; j < member.size(); j++) {
-				int sz = testGroupSize.get(i*member.size()+j);
-				for(int pageNum = 1;pageNum <= sz/pageVO.getSize();pageNum++ ) {
-					pageVO.setPage(pageNum);
-					Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
-							pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
-					tester.pageTest(page, testGroup, pageNum, sz, PageDirection.DESC);
-				}
-				
+				pageVO.setPage(1);
+				Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
+						pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
+				tester.pageTest(page, testGroup, 1, testGroupSize.get(i*member.size()+j), PageDirection.DESC);
 			}
 
 		}

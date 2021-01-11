@@ -9,8 +9,6 @@ import org.springframework.data.domain.Page;
 
 import com.untact.vo.PageDirection;
 
-import jdk.internal.org.jline.utils.Log;
-
 public class PageTester<T> {
 	public void pageTest(
 			Page<T> page,
@@ -24,7 +22,7 @@ public class PageTester<T> {
 		for(int cur=0;cur<testGroup.size();cur++) {
 			if(result.get(0).equals(testGroup.get(cur))) {
 				if(direction == PageDirection.DESC) {
-					if(!DESCTest(result,testGroup,cur)) {
+					if(!DESCTest()) {
 						fail();
 					}else {
 						return;
@@ -41,17 +39,8 @@ public class PageTester<T> {
 		fail();
 	}
 	
-	private boolean DESCTest(List<T> result,List<T> testGroup,int start) {
-		if(start-result.size() < -1)
-			return false;
-		int resultIdx = 0;
-		for(int i=start;i>start-result.size();i--) {
-			if(!result.get(resultIdx).equals(testGroup.get(i))) {
-				return false;
-			}
-			resultIdx++;
-		}
-		return true;
+	private boolean DESCTest(List<T> result,List<T> testGroup) {
+		return false;
 	}
 	
 	private boolean ASCTest() {

@@ -9,8 +9,6 @@ import org.springframework.data.domain.Page;
 
 import com.untact.vo.PageDirection;
 
-import jdk.internal.org.jline.utils.Log;
-
 public class PageTester<T> {
 	public void pageTest(
 			Page<T> page,
