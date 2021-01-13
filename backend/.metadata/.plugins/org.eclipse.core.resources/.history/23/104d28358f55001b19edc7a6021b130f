@@ -86,16 +86,6 @@ public class BoardRepositoryTest {
 									.build());
 	}
 	
-	@Test(expected=DataIntegrityViolationException.class)
-	public void memberNullSaveTest() {
-		boardRepo.saveAndFlush(Board.builder()
-									.title("title")
-									.content("content")
-									.group(group.get(0))
-									.kind(BoardKind.NORMAL)
-									.build());
-	}
-	
 	@Test
 	public void getPageWithGroupNumberTest(){
 		

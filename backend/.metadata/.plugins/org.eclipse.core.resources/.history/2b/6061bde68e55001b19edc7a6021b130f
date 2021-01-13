@@ -62,7 +62,6 @@ public class BoardRepositoryTest {
 				.content("content")
 				.group(group.get(0))
 				.member(member.get(0))
-				.kind(BoardKind.NORMAL)
 				.build());
 	}
 	
@@ -70,29 +69,9 @@ public class BoardRepositoryTest {
 	public void contentNullSaveTest() {
 		boardRepo.saveAndFlush(Board.builder()
 									.title("title")
-									.group(group.get(0))
-									.member(member.get(0))
-									.kind(BoardKind.NORMAL)
-									.build());
-	}
-	
-	@Test(expected=DataIntegrityViolationException.class)
-	public void groupNullSaveTest() {
-		boardRepo.saveAndFlush(Board.builder()
-									.title("title")
-									.content("content")
-									.member(member.get(0))
-									.kind(BoardKind.NORMAL)
-									.build());
-	}
-	
-	@Test(expected=DataIntegrityViolationException.class)
-	public void memberNullSaveTest() {
-		boardRepo.saveAndFlush(Board.builder()
-									.title("title")
 									.content("content")
 									.group(group.get(0))
-									.kind(BoardKind.NORMAL)
+									.member(member.get(0))
 									.build());
 	}
 	

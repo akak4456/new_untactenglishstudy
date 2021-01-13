@@ -92,6 +92,7 @@ public class BoardRepositoryTest {
 									.title("title")
 									.content("content")
 									.group(group.get(0))
+									.member(member.get(0))
 									.kind(BoardKind.NORMAL)
 									.build());
 	}
