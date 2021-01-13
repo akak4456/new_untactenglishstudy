@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="BoardRepositoryTest" project="untactenglishstudy" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="com.untact.board.persistent.BoardRepositoryTest" time="0.248" displayname="BoardRepositoryTest" uniqueid="[engine:junit-vintage]/[runner:com.untact.board.persistent.BoardRepositoryTest]">
+    <testcase name="getPageWithGroupNumberAndKindTest" classname="com.untact.board.persistent.BoardRepositoryTest" time="0.105" displayname="getPageWithGroupNumberAndKindTest" uniqueid="[engine:junit-vintage]/[runner:com.untact.board.persistent.BoardRepositoryTest]/[test:getPageWithGroupNumberAndKindTest(com.untact.board.persistent.BoardRepositoryTest)]"/>
+    <testcase name="getPageWithGroupNumberTest" classname="com.untact.board.persistent.BoardRepositoryTest" time="0.005" displayname="getPageWithGroupNumberTest" uniqueid="[engine:junit-vintage]/[runner:com.untact.board.persistent.BoardRepositoryTest]/[test:getPageWithGroupNumberTest(com.untact.board.persistent.BoardRepositoryTest)]"/>
+    <testcase name="successSaveTest" classname="com.untact.board.persistent.BoardRepositoryTest" time="0.138" displayname="successSaveTest" uniqueid="[engine:junit-vintage]/[runner:com.untact.board.persistent.BoardRepositoryTest]/[test:successSaveTest(com.untact.board.persistent.BoardRepositoryTest)]"/>
+  </testsuite>
+</testrun>

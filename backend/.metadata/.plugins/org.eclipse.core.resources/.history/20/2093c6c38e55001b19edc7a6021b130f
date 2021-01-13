@@ -55,7 +55,6 @@ public class Board {
 	
 	@Enumerated(EnumType.STRING)
 	@NotNull
-	@Column(nullable=false)
 	private BoardKind kind;//게시판 글 종류(일반 글인지 질의 응답인지)
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

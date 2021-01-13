@@ -10,12 +10,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.untact.board.domain.Board;
-import com.untact.board.domain.BoardKind;
 import com.untact.demo.UntactenglishstudyApplication;
 import com.untact.group.domain.GroupEntity;
 import com.untact.member.domain.MemberEntity;
@@ -25,6 +23,7 @@ import lombok.extern.java.Log;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = UntactenglishstudyApplication.class)
 @Transactional
+@Commit
 @Log
 public class BoardRepositoryTest {
 	
@@ -47,26 +46,6 @@ public class BoardRepositoryTest {
 	
 	@Test
 	public void successSaveTest() {
-		boardRepo.saveAndFlush(Board.builder()
-									.title("title")
-									.content("content")
-									.group(group.get(0))
-									.member(member.get(0))
-									.kind(BoardKind.NORMAL)
-									.build());
-	}
-	
-	@Test(expected=DataIntegrityViolationException.class)
-	public void titleNullSaveTest() {
-		boardRepo.saveAndFlush(Board.builder()
-				.content("content")
-				.group(group.get(0))
-				.member(member.get(0))
-				.build());
-	}
-	
-	@Test(expected=DataIntegrityViolationException.class)
-	public void contentNullSaveTest() {
 		boardRepo.saveAndFlush(Board.builder()
 									.title("title")
 									.content("content")
