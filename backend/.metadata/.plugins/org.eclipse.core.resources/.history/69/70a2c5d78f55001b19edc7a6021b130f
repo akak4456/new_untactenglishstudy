@@ -8,11 +8,20 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 
+import com.untact.group.domain.GroupEntity;
+import com.untact.member.domain.MemberEntity;
 import com.untact.vo.PageDirection;
 
 public class PageTester<T> {
+	private List<GroupEntity> group;
+	
+	private List<MemberEntity> member;
 	
 	public PageTester() {
+		
+	}
+	
+	public PageTester(List<GroupEntity> group,List<MemberEntity> member) {
 		
 	}
 	public void pageTest(

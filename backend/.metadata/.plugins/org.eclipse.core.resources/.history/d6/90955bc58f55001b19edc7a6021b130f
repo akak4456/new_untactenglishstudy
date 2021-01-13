@@ -11,10 +11,6 @@ import org.springframework.data.domain.Page;
 import com.untact.vo.PageDirection;
 
 public class PageTester<T> {
-	
-	public PageTester() {
-		
-	}
 	public void pageTest(
 			Page<T> page,
 			List<T> testGroup,

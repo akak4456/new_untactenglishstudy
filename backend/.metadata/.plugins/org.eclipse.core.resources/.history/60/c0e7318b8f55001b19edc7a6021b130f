@@ -117,6 +117,48 @@ public class BoardRepositoryTest {
 	
 	@Test
 	public void getPageWithGroupNumberTest(){
+		List<Board> testGroup = new ArrayList<>();
+		List<Integer> testGroupSize = new ArrayList<>();
+		for (int i = 0; i < group.size(); i++) {
+			for (int j = 0; j < member.size(); j++) {
+				Random random = new Random();
+				int newSz = 10 + random.nextInt(20);
+				testGroupSize.add(newSz);
+				for (int k = 0; k < newSz; k++) {
+					testGroup.add(Board.builder()
+							.title("title")
+							.content("content")
+							.group(group.get(i))
+							.member(member.get(j))
+							.kind(BoardKind.NORMAL)
+							.build());
+				}
+			}
+		}
+		boardRepo.saveAll(testGroup);
+		// test Group 생성
+
+		PageVO pageVO = new PageVO();
+		PageTester<Attendance> tester = new PageTester<>();
+
+		for (int i = 0; i < group.size(); i++) {
+			for (int j = 0; j < member.size(); j++) {
+				int sz = testGroupSize.get(i * member.size() + j);
+				for (int pageNum = 1; pageNum <= sz / pageVO.getSize(); pageNum++) {
+					pageVO.setPage(pageNum);
+					Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
+							pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(),
+							member.get(j).getMno());
+					tester.pageTest(page, testGroup, pageNum, sz, PageDirection.DESC);
+				}
+				int notExistPage = sz / pageVO.getSize() + 5;
+				pageVO.setPage(notExistPage);
+				Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
+						pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
+				assertEquals(page.getNumberOfElements(),0);
+			}
+
+		}
 	}
 	
 	@Test
