@@ -1,8 +1,5 @@
 package com.untact.board.persistent;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,20 +10,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.untact.board.domain.Board;
-import com.untact.board.persistent.BoardRepository;
 import com.untact.demo.UntactenglishstudyApplication;
-import com.untact.file.persistent.FileEntityRepository;
 import com.untact.group.domain.GroupEntity;
-import com.untact.group.persistent.GroupEntityRepository;
 import com.untact.member.domain.MemberEntity;
-import com.untact.member.persistent.MemberEntityRepository;
-import com.untact.persistent.util.DeleteAllUtil;
-import com.untact.vo.PageVO;
 
 import lombok.extern.java.Log;
 
@@ -36,39 +26,44 @@ import lombok.extern.java.Log;
 @Commit
 @Log
 public class BoardRepositoryTest {
-	@Autowired
-	private DeleteAllUtil deleteAllUtil;
-	@Autowired
-	private GroupEntityRepository groupRepo;
 	
 	@Autowired
 	private BoardRepository boardRepo;
 	
-	@Autowired
-	private MemberEntityRepository memberRepo;
+	private List<GroupEntity> group;
 	
-	@Autowired
-	private FileEntityRepository fileRepo;
-	
-	private static final int MAX_ENTITY_COUNT = 105;
-	private static final int EXPECTED_PAGE_COUNT = 11;
-	
-	private GroupEntity group1;
-	
-	private MemberEntity member1;
+	private List<MemberEntity> member;
 	
 	@Before
 	public void setUp() {
-		deleteAllUtil.deleteAllRepo();
-		group1 = new GroupEntity().builder().title("title").build();
-		groupRepo.save(group1);
-		member1 = MemberEntity.builder().name("name").build();
-		memberRepo.save(member1);
-	}
-	@Test
-	public void initTest() {
+		group = new ArrayList<>();
+		member = new ArrayList<>();
+		for (int i = 0; i < 5; i++) {
+			group.add(GroupEntity.builder().title("title" + i).build());
+			member.add(MemberEntity.builder().email("email" + i + "@email.com").build());
+		}
 	}
 	
+	@Test
+	public void successSaveTest() {
+		boardRepo.saveAndFlush(Board.builder()
+									.title("title")
+									.content("content")
+									.group(group.get(0))
+									.member(member.get(0))
+									.build());
+	}
+	
+	@Test
+	public void getPageWithGroupNumberTest(){
+		
+	}
+	
+	@Test
+	public void getPageWithGroupNumberAndKindTest() {
+		
+	}
+	/*
 	@Test
 	public void getPageWithGroupNumberTest() {
 		List<Board> list = generateBoardList(group1,member1);
@@ -107,4 +102,5 @@ public class BoardRepositoryTest {
 			resultIdx++;
 		}
 	}
+	*/
 }

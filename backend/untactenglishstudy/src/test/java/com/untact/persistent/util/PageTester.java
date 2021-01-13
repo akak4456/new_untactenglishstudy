@@ -1,5 +1,9 @@
 package com.untact.persistent.util;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.fail;
+
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -7,47 +11,40 @@ import org.springframework.data.domain.Page;
 import com.untact.vo.PageDirection;
 
 public class PageTester<T> {
-	public boolean pageTest(
+	public void pageTest(
 			Page<T> page,
 			List<T> testGroup,
 			int pageNum,
 			int expectedTotalElementsCount,
 			PageDirection direction) {
 		List<T> result = page.getContent();
-		if(page.getTotalElements() != expectedTotalElementsCount) {
-			return false;
-		}
-		if(page.getNumber() != pageNum -1) {
-			return false;
-		}
-		if(result.size() == 0)
-			return false;
+		assertEquals(page.getTotalElements(),expectedTotalElementsCount);
+		assertEquals(page.getNumber(),pageNum-1);
+		assertNotEquals(result.size(),0);
 		for(int cur=0;cur<testGroup.size();cur++) {
 			if(result.get(0).equals(testGroup.get(cur))) {
 				if(direction == PageDirection.DESC) {
-					return DESCTest(result,testGroup,cur);
+					DESCTest(result,testGroup,cur);
 				}else if(direction == PageDirection.ASC) {
-					return ASCTest();
+					ASCTest();
 				}
 			}
 		}
-		return false;
 	}
 	
-	private boolean DESCTest(List<T> result,List<T> testGroup,int start) {
+	private void DESCTest(List<T> result,List<T> testGroup,int start) {
 		if(start-result.size() < -1)
-			return false;
+			fail();
 		int resultIdx = 0;
 		for(int i=start;i>start-result.size();i--) {
 			if(!result.get(resultIdx).equals(testGroup.get(i))) {
-				return false;
+				fail();
 			}
 			resultIdx++;
 		}
-		return true;
 	}
 	
-	private boolean ASCTest() {
-		return false;
+	private void ASCTest() {
+		fail();
 	}
 }

@@ -46,10 +46,11 @@ public class Board {
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="b_seq")
 	private Long bno;//게시판 글 번호
 	
+	@Column(nullable=false)
 	private String title;//게시판 글 제목
 	
 	
-	@Column(columnDefinition = "LONGTEXT")
+	@Column(columnDefinition = "LONGTEXT", nullable=false)
 	private String content;//게시판 글 내용
 	
 	@Enumerated(EnumType.STRING)
@@ -64,17 +65,15 @@ public class Board {
 	@UpdateTimestamp
 	private LocalDateTime updatedate;//게시판 수정 시간
 	
-	@ManyToOne
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name="gno")
+	@ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name="gno",nullable=false)
 	private GroupEntity group;//어떤 그룹이 이 글을 썻는지 나타냄
 	public void setGroup (GroupEntity group) {
 		this.group = group;
 	}
 	
-	@ManyToOne
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	@JoinColumn(name="mno")
+	@ManyToOne(cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name="mno",nullable=false)
 	private MemberEntity member;//어떤 사용자가 이 글을 썻는지 나타냄
 	public void setMember(MemberEntity member) {
 		this.member = member;	

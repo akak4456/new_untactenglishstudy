@@ -6,4 +6,8 @@
     <fullyQualifiedTypeName name="com.untact.group.domain.GroupEntity"/>
     <fullyQualifiedTypeName name="com.untact.member.domain.MemberEntity"/>
     <fullyQualifiedTypeName name="java.util.stream.Collectors"/>
+    <fullyQualifiedTypeName name="java.util.Random"/>
+    <fullyQualifiedTypeName name="com.untact.vo.PageDirection"/>
+    <fullyQualifiedTypeName name="jdk.internal.org.jline.utils.Log"/>
+    <fullyQualifiedTypeName name="java.time.LocalDate"/>
 </qualifiedTypeNameHistroy>

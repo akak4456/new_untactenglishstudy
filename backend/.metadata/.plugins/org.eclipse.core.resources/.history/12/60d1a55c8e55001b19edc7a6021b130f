@@ -1,0 +1,92 @@
+package com.untact.board.persistent;
+
+import javax.transaction.Transactional;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.untact.board.domain.Board;
+import com.untact.demo.UntactenglishstudyApplication;
+import com.untact.group.domain.GroupEntity;
+
+import lombok.extern.java.Log;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = UntactenglishstudyApplication.class)
+@Transactional
+@Commit
+@Log
+public class BoardRepositoryTest {
+	
+	@Autowired
+	private BoardRepository boardRepo;
+	
+	private List<GroupEntity> group;
+	
+	@Before
+	public void setUp() {
+	}
+	
+	@Test
+	public void successSaveTest() {
+		boardRepo.saveAndFlush(Board.builder()
+									.title("title")
+									.content("content")
+									.group(GroupEntity.builder()))
+	}
+	
+	@Test
+	public void getPageWithGroupNumberTest(){
+		
+	}
+	
+	@Test
+	public void getPageWithGroupNumberAndKindTest() {
+		
+	}
+	/*
+	@Test
+	public void getPageWithGroupNumberTest() {
+		List<Board> list = generateBoardList(group1,member1);
+		specificPageTest(list,group1,1,10);
+		specificPageTest(list,group1,11,5);
+	}
+	
+	private List<Board> generateBoardList(GroupEntity group,MemberEntity member){
+		List<Board> list = new ArrayList<>();
+		for(int i=0;i<MAX_ENTITY_COUNT;i++) {
+			Board entity = generateBoard("title"+i,"content"+i,group,member);
+			list.add(entity);
+		}
+		boardRepo.saveAll(list);
+		return list;
+	}
+	private Board generateBoard(String title,String content,GroupEntity group,MemberEntity member) {
+		return new Board().builder().title(title).content(content).group(group).member(member).build();
+	}
+	
+	private void specificPageTest(List<Board> list,GroupEntity group,int pageNum,int expectedPageSize) {
+		PageVO pageVO = new PageVO(pageNum);
+		Page<Board> page = boardRepo.getPageWithGroupNumber(pageVO.makePageable(0, "bno"),group.getGno());
+		List<Board> result = page.getContent();
+		assertEquals(page.getTotalElements(),MAX_ENTITY_COUNT);
+		assertEquals(page.getTotalPages(),EXPECTED_PAGE_COUNT);
+		assertEquals(result.size(),expectedPageSize);
+		assertEquals(page.getNumber(),pageNum-1);
+		int resultIdx = 0;
+		for(int i = list.size()-1-pageVO.getSize()*(pageNum-1);i>Math.max(-1,list.size()-1-pageVO.getSize()*pageNum);i--) {
+			//list의 첫번째 원소는 가장 처음에, list의 마지막 원소는 가장 나중에 들어옴
+			//내림차순으로 정렬되었는지 확인하기 위함
+			assertTrue(result.get(resultIdx).getTitle().equals(list.get(i).getTitle()));
+			log.info(result.get(resultIdx).getTitle());
+			log.info(result.get(resultIdx).getMember().getName());
+			resultIdx++;
+		}
+	}
+	*/
+}

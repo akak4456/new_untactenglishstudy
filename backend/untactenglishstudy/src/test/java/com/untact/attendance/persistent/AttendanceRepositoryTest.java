@@ -179,13 +179,13 @@ public class AttendanceRepositoryTest {
 					Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
 							pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(),
 							member.get(j).getMno());
-					assertTrue(tester.pageTest(page, testGroup, pageNum, sz, PageDirection.DESC));
+					tester.pageTest(page, testGroup, pageNum, sz, PageDirection.DESC);
 				}
 				int notExistPage = sz / pageVO.getSize() + 5;
 				pageVO.setPage(notExistPage);
 				Page<Attendance> page = attendanceRepo.getPageWithGroupNumberAndMemberNumber(
 						pageVO.makePageable(PageDirection.DESC, "ano"), group.get(i).getGno(), member.get(j).getMno());
-				assertFalse(tester.pageTest(page, testGroup, notExistPage, sz, PageDirection.DESC));
+				assertEquals(page.getNumberOfElements(),0);
 			}
 
 		}

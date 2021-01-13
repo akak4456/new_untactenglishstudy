@@ -35,8 +35,6 @@ public class AntonymRepositoryTest {
 	
 	@Before
 	public void setUp() {
-		assertEquals(antonymRepo.count(),0L);
-		
 		englishSpelling = EnglishSpelling.builder().spelling("spelling").lv(EnglishSpellingDifficulty.easy).build();
 	}
 	@Test
